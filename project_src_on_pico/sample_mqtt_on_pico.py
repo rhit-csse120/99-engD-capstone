@@ -9,6 +9,11 @@ import socketpool
 import wifi
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 
+# You need these Adafruit libraries in the lib folder on the Pico:
+#    adafruit_minimqtt
+#    adafruit_connection_manager.mpy
+#    adafruit_ticks.mpy
+
 # These imports are for simulating sending sensor data:
 import random
 import time
@@ -90,7 +95,9 @@ except Exception as e:
 counter = 0
 loop_counter = 0
 while True:
-    mqtt_client.loop(timeout=1)  # Poll for about 1 second to see if any messages have arrived
+    mqtt_client.loop(
+        timeout=1
+    )  # Poll for about 1 second to see if any messages have arrived
 
     # Send a message (simulating sending sensor data):
     if counter >= 10:  # Send (publish) every 10 times through this loop

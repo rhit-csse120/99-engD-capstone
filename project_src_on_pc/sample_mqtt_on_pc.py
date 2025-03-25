@@ -19,7 +19,7 @@ DEVICE_TO_PC_TOPIC = UNIQUE_ID + "/device_to_pc"
 # PC_TO_DEVICE_TOPIC = UNIQUE_ID + "/device_to_pc"
 # DEVICE_TO_PC_TOPIC = UNIQUE_ID + "/pc_to_device"
 
-BROKER = "broker.hivemq.com"
+BROKER = "broker.emqx.io"  # Or: "broker.hivemq.com", but must match Pico
 TCP_PORT = 1883
 
 
@@ -41,8 +41,7 @@ def main():
 
     button = ttk.Button(frame, text="Send Entry box data to the other computer")
     button.grid()
-    button["command"] = lambda: send_contents_of_entry_box_via_mqtt(entry,
-                                                                    mqtt_client)
+    button["command"] = lambda: send_contents_of_entry_box_via_mqtt(entry, mqtt_client)
 
     label = ttk.Label(frame, text="No data yet")
     label.grid()
@@ -70,14 +69,14 @@ def on_connect(client, userdata, flags, reason_code, properties):
 
 
 def on_message(mqtt_client, userdata, message_packet):
-    """ Called when a message arrives.  Display it on Console and in GUI. """
+    """Called when a message arrives.  Display it on Console and in GUI."""
     message = message_packet.payload.decode()
     print("Received message:", message)  # Show on the Console
     mqtt_client.label_for_message_from_device["text"] = message  # Show in GUI
 
 
 def send_contents_of_entry_box_via_mqtt(entry, mqtt_client):
-    """ Publish (send to other device) the string in the given ttk.Entry. """
+    """Publish (send to other device) the string in the given ttk.Entry."""
     message = entry.get()
     print("Sending", message)  # For debugging, as needed
     mqtt_client.publish(PC_TO_DEVICE_TOPIC, message)

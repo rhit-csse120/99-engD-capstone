@@ -1,8 +1,8 @@
 secrets = {
-   'ssid' : 'David',
-   'password' : 'engdengd',
-   'mqtt_username' : '',
-   'mqtt_key' : '',
-   'broker' : 'broker.hivemq.com',
-   'port' : 1883
+    "ssid": "YOUR-PHONE-ID",
+    "password": "YOUR-PHONE-PASSWORD",
+    "mqtt_username": "",
+    "mqtt_key": "",
+    "broker": "broker.emqx.io",
+    "port": 1883,
 }
