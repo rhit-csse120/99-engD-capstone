@@ -8,4 +8,6 @@ secrets = {
 }
 
 # If using an iPhone, be sure to check (turn on)
-# the Maximum Compatibility option
+# the Maximum Compatibility option.
+# Also, be sure that your phone is "active" (not sleeping).
+# Troubles connecting? Try turning the Hotspot off and then on again.
